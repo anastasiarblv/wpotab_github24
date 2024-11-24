@@ -9,11 +9,11 @@ stages:
       size: 2459
     params:
       params.yaml:
-        data_collection.test_size: 0.2
+        data_collection.test_size: 0.22
     outs:
     - path: data/raw
       hash: md5
-      md5: c0c2d65c14a603e91e029fda3c344a5c.dir
+      md5: fd1e1df714da4cd365e226ebe1032979.dir
       size: 522262
       nfiles: 2
   pre_processing:
@@ -21,52 +21,52 @@ stages:
     deps:
     - path: data/raw
       hash: md5
-      md5: c0c2d65c14a603e91e029fda3c344a5c.dir
+      md5: fd1e1df714da4cd365e226ebe1032979.dir
       size: 522262
       nfiles: 2
     - path: src/data/data_prep.py
       hash: md5
-      md5: 76e9145735535f6a234754f5e91e6b93
-      size: 2155
+      md5: 0a335c7468c35310cc0b9ac113b67514
+      size: 2171
     outs:
     - path: data/processed
       hash: md5
-      md5: 0beb4adc62d83817b414bed6f535f487.dir
-      size: 546895
+      md5: 0567e0568733dfffc15633922e27c0c6.dir
+      size: 546264
       nfiles: 2
   model_building:
     cmd: python src/model/model_building.py
     deps:
     - path: data/processed
       hash: md5
-      md5: 0beb4adc62d83817b414bed6f535f487.dir
-      size: 546895
+      md5: 0567e0568733dfffc15633922e27c0c6.dir
+      size: 546264
       nfiles: 2
     - path: src/model/model_building.py
       hash: md5
-      md5: 867ab0f59c2f84c37d08d7f6417cae8c
-      size: 2996
+      md5: 3187055b645a295e46e9f0901ec16b4a
+      size: 2998
     params:
       params.yaml:
-        model_building.n_estimators: 140
+        model_building.n_estimators: 142
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: f5e644d06f7633380417a4855bf6d7d2
-      size: 10300307
+      md5: 3ef4e0af6bb3572110e8aaa2f3be27d3
+      size: 10222059
   model_eval:
     cmd: python src/model/model_eval.py
     deps:
     - path: models/model.pkl
       hash: md5
-      md5: f5e644d06f7633380417a4855bf6d7d2
-      size: 10300307
+      md5: 3ef4e0af6bb3572110e8aaa2f3be27d3
+      size: 10222059
     - path: src/model/model_eval.py
       hash: md5
-      md5: d390071ae0cbf6793b90fa8d002690fa
-      size: 5644
+      md5: b7fcab8707b7e5b0d725820f7b7b0bad
+      size: 5646
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: 9703603e312e6026bf20349b18149992
-      size: 145
+      md5: 71ea2a5b001f657829bdfb0347240d10
+      size: 146

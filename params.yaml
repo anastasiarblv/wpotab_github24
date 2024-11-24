@@ -1,6 +1,6 @@
 # Сначала указываем название стадии:
 data_collection:
-  test_size: 0.2
+  test_size: 0.22
 
 model_building:
-  n_estimators: 140
+  n_estimators: 142
